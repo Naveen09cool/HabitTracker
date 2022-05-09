@@ -1,0 +1,22 @@
+<h1>HOME</h1>
+<% if(locals.task){ %>
+    <%= task.taskName %>
+    
+<%}%>
+
+
+<form action="/create-task" method="POST">
+    <input type="text" name="taskName" placeholder="Enter Task..." required>                
+    <button type="submit">AddTask</button>                    
+</form>
+
+<form action="/action-status/" method="POST">
+        <input type="radio" id="huey" name="actionStatus" value="true" checked>
+        <label for="huey">Done</label>
+
+        <input type="radio" id="huey" name="actionStatus" value="false" checked>
+        <label for="huey">NotDone</label>
+        
+        <input type="submit" value="Submit">
+</form>
+
