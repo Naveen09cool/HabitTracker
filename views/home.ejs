@@ -1,22 +1,45 @@
-<h1>HOME</h1>
-<% if(locals.task){ %>
-    <%= task.taskName %>
+<section id="feed-posts">
     
-<%}%>
+        <form action="/create-task" method="POST">
+            <input type="text" name="taskName" placeholder="Enter Task..." required>
+            <input type="submit" value="Add task">
+        </form>
+    
 
-
-<form action="/create-task" method="POST">
-    <input type="text" name="taskName" placeholder="Enter Task..." required>                
-    <button type="submit">AddTask</button>                    
-</form>
-
-<form action="/action-status/" method="POST">
-        <input type="radio" id="huey" name="actionStatus" value="true" checked>
-        <label for="huey">Done</label>
-
-        <input type="radio" id="huey" name="actionStatus" value="false" checked>
-        <label for="huey">NotDone</label>
-        
-        <input type="submit" value="Submit">
-</form>
-
+    <div id="posts-list-container">
+        <ul>
+            <% for(tsk of task){ %>
+                <li>
+                    <p>
+                        <%= tsk.taskName %>
+                        <br>
+                    </p>
+                </li>
+                <div class="task-actions">
+                    <form action="/action-status/" method="POST">
+                        <input type="radio" name="actionStatus" value="true" checked>
+                        <label>Done</label>
+                
+                        <input type="radio" name="actionStatus" value="false" checked>
+                        <label>NotDone</label>
+                        
+                        <input type="hidden" name="task" value="<%= task._id %>">
+                        
+                        <input type="submit" value="Submit">
+                    </form>
+                    <div class="task-actions-list">
+                        <ul id="task-actions-<%= task._id %>"></ul>
+                            <% for(actStatus of task.actions){ %>
+                                <p>
+                                    <%= actStatus.actionStatus%>
+                                </p>
+                            <%}%>   
+                        </ul>
+                        <%= task.actions %>
+                    </div>
+                </div>        
+                
+            <%} %>
+        </ul>
+    </div>
+</section>

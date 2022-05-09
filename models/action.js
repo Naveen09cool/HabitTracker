@@ -7,13 +7,13 @@ const actionSchema = new mongoose.Schema({
         type: String,
     },
     dateRecord: {
-        type: Date, default: Date.now 
+        type: Date, default: Date.now()
     },
-    taskNames: {
+    task: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task'
     }
-})
+},{timestamps:true})
 
 const Action = mongoose.model('Action', actionSchema);
 // exporting schema
