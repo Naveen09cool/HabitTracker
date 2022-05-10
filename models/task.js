@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const taskSchema = new mongoose.Schema({
     taskName:{
         type: String,
-        unique: true,
+        // unique: true,
         required: true,
         dateCreated:{type: Date, default: Date.now()}
     } ,

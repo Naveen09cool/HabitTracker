@@ -23,18 +23,18 @@
                         <input type="radio" name="actionStatus" value="false" checked>
                         <label>NotDone</label>
                         
-                        <input type="hidden" name="task" value="<%= task._id %>">
+                        <input type="hidden" name="task" value="<%=task._id %>">
                         
                         <input type="submit" value="Submit">
                     </form>
                     <div class="task-actions-list">
                         <ul id="task-actions-<%= task._id %>"></ul>
-                            <% for(actStatus of task.actions){ %>
+                            <% for(actStatus of task){ %>
                                 <p>
                                     <%= actStatus.actionStatus%>
                                 </p>
                             <%}%>   
-                        </ul>
+                        <!-- </ul> -->
                         <%= task.actions %>
                     </div>
                 </div>        

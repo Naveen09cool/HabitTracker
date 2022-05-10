@@ -24,7 +24,7 @@ module.exports.create= async function(req, res){
             res.redirect('/');
         }
     }catch(err){
-        console.log("Erron in Action");
+        console.log("Erron in Action",err);
         return;
     }
     
