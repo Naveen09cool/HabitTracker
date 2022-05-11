@@ -3,7 +3,9 @@ const port = 7000;
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+const bodyParser = require('body-parser')
 
+// app.use(bodyParser);
 app.use(express.static('./assets'));
 app.use(express.urlencoded());
 

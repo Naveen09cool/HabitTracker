@@ -20,7 +20,7 @@ module.exports.home = function(req, res){
     .populate({
         path:'actions',
         // populate:{
-        //     path
+        //     path:'action'
         // }
     })
     .exec(function (err, task) {
@@ -29,6 +29,7 @@ module.exports.home = function(req, res){
             task: task
         });
     })
+
 }
 
 // module.exports.create_task = function(req, res){

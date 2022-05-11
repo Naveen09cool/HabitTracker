@@ -1,44 +1,35 @@
-<section id="feed-posts">
-    
+<section id="habbit-Tracker">
+    <div>
         <form action="/create-task" method="POST">
             <input type="text" name="taskName" placeholder="Enter Task..." required>
             <input type="submit" value="Add task">
         </form>
-    
-
-    <div id="posts-list-container">
+    </div>            
+    <div id="task-list-container">
         <ul>
             <% for(tsk of task){ %>
-                <li>
-                    <p>
-                        <%= tsk.taskName %>
-                        <br>
-                    </p>
-                </li>
+                <li><p><%= tsk.taskName %><br></p></li>
                 <div class="task-actions">
-                    <form action="/action-status/" method="POST">
+                <% if(locals.task){ %>
+                    <form action="/action-status" method="POST">
                         <input type="radio" name="actionStatus" value="true" checked>
                         <label>Done</label>
-                
                         <input type="radio" name="actionStatus" value="false" checked>
                         <label>NotDone</label>
-                        
-                        <input type="hidden" name="task" value="<%=task._id %>">
-                        
+                        <input type="hidden" name="task" value="<%= tsk._id %>">    
                         <input type="submit" value="Submit">
                     </form>
+                    
                     <div class="task-actions-list">
                         <ul id="task-actions-<%= task._id %>"></ul>
-                            <% for(actStatus of task){ %>
-                                <p>
-                                    <%= actStatus.actionStatus%>
-                                </p>
-                            <%}%>   
-                        <!-- </ul> -->
-                        <%= task.actions %>
+                            <p>
+                                <% for(status of tsk.actions){ %>
+                                    <%=status.actionStatus %>                                        
+                                <%}%>                                      
+                            </p>       
                     </div>
-                </div>        
-                
+                <% } %>    
+                </div>    
             <%} %>
         </ul>
     </div>

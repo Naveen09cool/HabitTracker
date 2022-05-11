@@ -6,9 +6,9 @@ const actionSchema = new mongoose.Schema({
     actionStatus :{
         type: String,
     },
-    dateRecord: {
-        type: Date, default: Date.now()
-    },
+    // dateRecord: {
+    //     type: Date, default: Date.now()
+    // },
     task: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task'

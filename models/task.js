@@ -7,7 +7,7 @@ const taskSchema = new mongoose.Schema({
         type: String,
         // unique: true,
         required: true,
-        dateCreated:{type: Date, default: Date.now()}
+        // dateCreated:{type: Date, default: Date.now()}
     } ,
     actions:[
         {

@@ -17,7 +17,7 @@ module.exports.create = async function(req, res){
         }
         return res.redirect('back');
     }catch(err){
-        console.log(err);
+        console.log('Error in Task',err);
         return res.redirect('back');
     }
   
