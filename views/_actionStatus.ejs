@@ -1,6 +1,51 @@
-<li>
-    <p>
-        <%= status.actionStatus %>
-        <br>
-    </p>
-</li>
+
+
+<section>
+    <div id="update-actions-container">
+        <% if(locals.task){ %>
+            <form action="/action-status" method="POST">
+                <input type="radio" name="actionStatus" value="true" checked>
+                <label>Done</label>
+                <input type="radio" name="actionStatus" value="false" checked>
+                <label>NotDone</label>
+                <input type="hidden" name="task" value="<%= tsk._id %>">    
+                <input type="submit" value="Submit">
+            </form>
+    </div>        
+    <div id="actions-list-container">
+        <ul id="task-actions-<%= task._id %>"></ul>
+        <table style="width:100% ;text-align:center">
+            <tr>
+                <th>Sun 0</th>
+                <th>Mon 1</th>
+                <th>Tue 2</th>
+                <th>wed 3</th>
+                <th>Thu 4</th>
+                <th>Fri 5</th>
+                <th>Sat 6</th>
+            </tr>
+            <tr>
+                <% for(let dy = 0; dy<= 6 ; dy++){ %>                    
+                    <% for(let i = 6; i>= 0; i--){ %>                                    
+                        <% if(tsk.actions[i]){ %>
+                            
+                            <td><p>                                        
+                                <% if(dy.toString() == tsk.actions[i].dateRecord.getDay().toString()){%>
+                                    
+                                    [<%= tsk.actions[i].dateRecord.toString().slice(0,4) %>]
+                                    <%=tsk.actions[i].dateRecord.getDay().toString() %>
+                                                                                
+                                <%}%>
+                            </p></td>
+                        <%}else{%>
+                            <p><%=  %></p>
+                        <%}%>
+                    <%}%>
+                <%}%>        
+            </tr>
+        </table>            
+    </div>
+        <% } %>    
+    
+
+</section>

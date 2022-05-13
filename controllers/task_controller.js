@@ -19,6 +19,24 @@ module.exports.create = async function(req, res){
     }catch(err){
         console.log('Error in Task',err);
         return res.redirect('back');
-    }
-  
+    } 
+}
+
+module.exports.destroy = async function(req, res){
+    try{
+        let task = await Task.findById(req.params.id);
+            task.remove();
+            await Action.deleteMany({task: req.params.id});
+            if (req.xhr){
+                return res.status(200).json({
+                    data: {
+                        task_id: req.params.id
+                    },
+                    message: "Task deleted"
+                });
+            }
+            return res.redirect('back');
+    }catch(err){
+        return res.redirect('back');
+    }    
 }
