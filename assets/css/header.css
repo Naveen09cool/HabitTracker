@@ -1,3 +1,10 @@
-body{
-    color: brown;
+
+#logo-container{
+    display: flex;
+    flex-direction: row;
+    color: #182395;
+
+}
+#logo-img img{
+    height: 75px;
 }

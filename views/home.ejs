@@ -1,23 +1,31 @@
 
-<section id="habbit-Tracker">
+<section id="habit-Tracker">
     <div id="create-task-container">
+        <h3>"Your habits defines you!!"</h3>
         <form action="/create-task" method="POST">
-            <input type="text" name="taskName" placeholder="Enter Task..." required>
-            <input type="submit" value="Add task">
+            <input id="habit-input" type="text" name="taskName" placeholder="Enter New habit..." required>
+            <input id="habit-input-button" type="submit" value="Add task">
+            <button id="habit-input-button" disabled="disabled">Total habits</button>
         </form>
     </div>            
     <div id="task-list-container">
         <!-- <ul> -->
         
-                <% for(tsk of task){ %>
-                <li>
+            <% for(tsk of task){ %>
+            <li>
+            <!-- <div id="one-task-container"> -->
                 <div id="task-name-container">
 
                         <ul>
                             <li>                         
                                 <%= tsk.taskName %>
+                            </li>
+                            <li>
                                 <% if(locals.task){ %>
-                                    <a href="/delete-task/<%= tsk._id%>">Delete-Task</a>
+                                    <!-- <a href="/delete-task/<%= tsk._id%>">Delete-Task</a> -->
+                                    <form action="/delete-task/<%= tsk._id%>">
+                                        <input type="submit" value="Delete-Task" />
+                                    </form>
                                 <% } %> 
                             </li>
                         </ul>
@@ -30,32 +38,31 @@
                     <!-- <ul id="task-actions-< task._id >"></ul> ahauhui-->
                     <table style="width:100% ;text-align:center">
                         <tr>
-                            <th>Sun 0</th>
+                            <% %>
+                            <%for(let i = 6; i>=0; i--){ %>
+                                <th><%=new Date(Date.now() - 864e5 * i).toString().slice(0,10);%></th>
+                            <%}%>
+                            <!-- <th>Sun 0</th>
                             <th>Mon 1</th>
                             <th>Tue 2</th>
                             <th>wed 3</th>
                             <th>Thu 4</th>
                             <th>Fri 5</th>
-                            <th>Sat 6</th>
+                            <th>Sat 6</th> -->
                         </tr>
                         <tr>
-                            <% for(let dy = 0; dy <= 6; dy++){ %>
+                            <% for(let j = 1; j <= 7; j++){ %>
+                                <%var dy = j%7;%>
                                 <td> 
                                     <%if(new Date().getUTCDay().toString() == dy.toString()) {%>
                                         <form action="/action-status" method="POST">
                                             <li>
-                                            <!-- <input type="radio" name="actionStatus" value="true">
-                                            <label>Done</label> -->
-                                            <!-- <input type="radio" name="actionStatus" value="false">
-                                            <label>NotDone</label> -->
-                                            <!-- <input type="submit" value="Submit"> -->
-                                            <input type="hidden" name="task" value="<%= tsk._id %>">    
-                                            <button type="submit" name="actionStatus" value="true">Done!</button>
-                                            <button type="submit" name="actionStatus" value="false">NotDone</button>
+                                                <input type="hidden" name="task" value="<%= tsk._id %>">    
+                                                <button type="submit" name="actionStatus" value="true">Done!</button>
+                                                <button type="submit" name="actionStatus" value="false">NotDone</button>
                                             </li>                                       
                                         </form>
-                                    <%}%>
-                                                                                                       
+                                    <%}%>                                                                                                       
                                 <% for(let i = tsk.actions.length; i>= 0; i--){ %>                                    
                                     <% if(tsk.actions[i]){ %>
                                         
@@ -75,6 +82,7 @@
                 </div>
                 <% } %>    <!-- Locals.Task closing here -->    
                 <!-- </div> -->
+            <!-- </div>  one-task-container -->
             </li>
             <%} %>   <!-- For Loop closing here -->     
         <!-- </ul> -->
