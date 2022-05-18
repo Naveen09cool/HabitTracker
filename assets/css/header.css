@@ -2,9 +2,14 @@
 #logo-container{
     display: flex;
     flex-direction: row;
-    color: #182395;
+    /* color: #f2f8fc; */
+    color: #FFF5F9;
+    /* background-color: #1c2f4e; */
+    background-color: #000000;
 
 }
 #logo-img img{
     height: 75px;
+    margin-left: 2px;
+    margin-top: 2px;
 }

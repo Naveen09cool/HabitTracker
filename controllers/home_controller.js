@@ -4,7 +4,7 @@ const { populate } = require('../models/task');
 
 console.log('Controller')
 
-module.exports.home = function(req, res){
+module.exports.home = async function(req, res){
     // Task.find({}, function(err,task){
     //     if(err){
     //         console.log('Error fetching task');
@@ -15,18 +15,20 @@ module.exports.home = function(req, res){
     //         task: task
     //     })
     // })
-
+    
+    const totalHabits = await Task.countDocuments({}) 
     Task.find({})
     .populate({
         path:'actions',
         // populate:{
         //     path:'action'
         // }
-    })
+    })    
     .exec(function (err, task) {
         return res.render('home',{
             title: "HOME",
-            task: task
+            task: task,
+            totalHabits: totalHabits
         });
     })
 
