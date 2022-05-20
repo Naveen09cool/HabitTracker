@@ -7,6 +7,8 @@ const actionController = require('../controllers/action_controller');
 
 // FOR HOME CONTROLLER
 router.get('/', homeController.home);
+router.get('/details/:id', homeController.details);
+
 
 // FOR TASK CONTROLLER
 router.post('/create-task', taskController.create)

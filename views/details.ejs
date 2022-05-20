@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/details.css">
+    <title>Document</title>
+</head>
+<body> 
+<section id="ha">
+    <div id="task-details-container">
+                <div id="dialogue">
+                    <h1>Detailed analysis for : <%= task.taskName %></h1>
+
+                    <h4>Habit started on : <%= task.createdAt.toDateString() %></h4>
+                </div>
+                <div id="details-task-name-container">
+                    <div id="only-task-name">
+                        <p><%= task.taskName %></p>
+                    </div>
+                </div>
+                <div id="task-delete-btn">
+                    <% if(locals.task){ %>
+                        <form action="/delete-task/<%= task._id%>">
+                            <input class="circle-button" type="submit" value="delete-task" />
+                        </form>
+                    <% } %>
+                </div>
+<!-- Table Section Started Here -->
+                <% if(locals.task){ %>
+                <div id="status-container">
+                    <table style="width:100% ;text-align:center">
+<!-- Week Days -->
+                        <tr>
+                            <% for(let j = 0; j <= 10; j++){ %>
+                                <% let dy = new Date(Date.now() - 864e5 * j).toDateString().slice(4,10);%>
+                                <th><%= dy %></th>
+                            <%}%>
+                        </tr>
+                        <tr>
+<!-- Loop to show week ewcordWeek record -->
+                            <% let currentDate = new Date(Date.now()).getDay()%>
+                            <% let Truecount = 0 %>
+                            <% let Falsecount = 0 %>
+                            <% for(let j = 0; j <= 10; j++){ %>
+                                <% let dy = new Date(Date.now() - 864e5 * j).toDateString().slice(0,10);%>   
+                                <td>
+                                    <% for(let i = task.actions.length; i>= 0; i--){ %>                                    
+                                        <% if(task.actions[i]){ %>
+                                            <% if(dy == task.actions[i].dateRecord.toDateString().slice(0,10)){ %>      
+                                                <%if(task.actions[i].actionStatus == 'true'){%>
+                                                    <% Truecount += 1 %>
+                                                    <p><span class="material-symbols-rounded" style="color:#ffffff;background-color:#018888; border-radius: 50%;">task_alt</span></p>
+                                                <%}else{%>
+                                                    <p><span class="material-symbols-outlined" style="color:#ffffff;background-color: #aa0000; border-radius: 50%;">cancel</span></p>
+                                                    <% Falsecount += 1 %>
+                                                <%}%>
+                                            <%}else{%>                                            
+                                                <%= %>                                            
+                                            <%}%> 
+                                        <%}%>   <!-- If(Tsk.actions) closing here --> 
+                                    <%}%><!-- For Loop (Inner) closing here --> 
+                                </td>
+                            <%}%>   <!-- For Loop (Outer) closing here --> 
+ <!-- Row for table tat contains status closing here --> 
+                        </tr>
+                    </table>
+                    <h1>Total job Done days : <%= Truecount %></h1>
+                    <h1>Total job Not-Done days : <%= Falsecount %></h1>
+                </div>
+                <% } %>    <!-- Locals.Task closing here -->  
+    </div>
+</section>
+</body>
+</html>

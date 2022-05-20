@@ -1,119 +1,158 @@
-
-<section id="habit-Tracker">
-    <div id="create-task-container">
-        <!-- <h3>"Your habits defines you!!"</h3>  -->
-        <form action="/create-task" method="POST">
-            <input id="habit-input" type="text" name="taskName" placeholder="Enter New habit..." required>
-            <input id="habit-input-button" type="submit" value="Add task">
-            <div id="total-habit">
-                <p>Active Habits: <%= totalHabits %></p>
-            </div>
-        </form>
-        
-    </div>            
-    <div id="task-list-container">
-        <!-- <ul> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="habit-Tracker">
+        <div id="create-task-container">
+            <!-- <h3>"Your habits defines you!!"</h3>  -->
+            <form action="/create-task" method="POST">
+                <input id="habit-input" type="text" name="taskName" placeholder="Enter New habit..." required>
+                <input id="habit-input-button" type="submit" value="Add task">
+                <div id="total-habit">
+                    <p>Active Habits: <%= totalHabits %></p>
+                </div>
+            </form>
             
-            <div id="table-heading">
-                <div id="habit-name-heading">
-                    <h2>Habit Name</h2>
-                </div>
-                <div id="habit-status-heading">
-                    <h2>Habit Status</h2>
-                </div>
-                <div id="habit-status-update-heading">
-                    <h2>Update Status</h2>
-                </div>
-            </div>
-            <% for(tsk of task){ %>
-            <li>
-            <!-- <div id="one-task-container"> -->
-                <div id="task-name-container">
-                        <ul>
-                            <li>                         
-                                <%= tsk.taskName %>
-                            </li>
-                            <li>
-                                <% if(locals.task){ %>
-                                    <!-- <a href="/delete-task/<%= tsk._id%>">Delete-Task</a> -->
-                                    <form action="/delete-task/<%= tsk._id%>">
-                                        <input class="circle-button" type="submit" value="🗑️" />
-                                    </form>
-                                <% } %> 
-                            </li>
-                        </ul>
-                </div>
+        </div>            
+        <div id="task-list-container">
+            <!-- <ul> -->
                 
-                <!-- <div id="main-container"> -->
-                <div id="update-actions-container">
-                    <form action="/action-status" method="POST">
-                        <li>
-                            <input type="hidden" name="task" value="<%= tsk._id %>">    
-                            <button class="doneNotDoneButton" type="submit" name="actionStatus" value="true">✔️</button>
-                            <button class="doneNotDoneButton" type="submit" name="actionStatus" value="false">❌</button>
-                        </li>                                       
-                    </form>
+                <div id="table-heading">
+                    <div id="habit-name-heading">
+                        <h2>Habit Name</h2>
+                    </div>
+                    <div id="habit-status-heading">
+                        <h2>Habit Status</h2>
+                    </div>
+                    <!-- <div id="habit-status-update-heading">
+                        <h2>Update Status</h2>
+                    </div> -->
                 </div>
-                <% if(locals.task){ %>
-                <div id="actions-list-container">
-                    <!-- <ul id="task-actions-< task._id >"></ul> ahauhui-->
-                    <table style="width:100% ;text-align:center">
-                        <tr>
-                            
-
-                                <% let currentDate = new Date(Date.now());%>
-                                <% for(let firstHalf = 1; firstHalf <= currentDate.getDay(); firstHalf++){%>
-                                    <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-firstHalf)).toDateString().slice(0,10);%></th>
-                                <%}%>
-                                <% for(let secondHalf = (currentDate.getDay()+1); secondHalf<=7; secondHalf++){%>
-                                    <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-secondHalf)).toDateString().slice(0,10);%></th>
-                                <%}%>
-                            <!-- <th>Mon 1</th><th>Tue 2</th><th>wed 3</th><th>Thu 4</th><th>Fri 5</th><th>Sat 6</th><th>Sun 0</th> -->
-
-                        </tr>
-                        <tr>
-                            <% var thisWeekNumber = function newweek_no(dt){
-                                    var tdt = new Date(dt.valueOf());
-                                    var dayn = (dt.getDay() + 6) % 7;
-                                    tdt.setDate(tdt.getDate() - dayn + 3);
-                                    var firstThursday = tdt.valueOf();
-                                    tdt.setMonth(0, 1);
-                                    if (tdt.getDay() !== 4){
-                                    tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
-                                 }
-                                return 1 + Math.ceil((firstThursday - tdt) / 604800000);
-                            }%>
-                            
-                            <% for(let j = 1; j <= 7; j++){ %>
-                                <%var dy = j%7;%>
-                                <td> 
-                                    <%if(new Date().getUTCDay().toString() == j.toString()) {%>
-                                        
-                                    <%}%>                                                                                                       
-                                <% for(let i = tsk.actions.length; i>= 0; i--){ %>                                    
-                                    <% if(tsk.actions[i]){ %>
-                                        <% if(dy.toString() == tsk.actions[i].dateRecord.getDay().toString() && thisWeekNumber(new Date()) == thisWeekNumber(tsk.actions[i].dateRecord)){ %>      
-                                            <%if(tsk.actions[i].actionStatus == 'true'){%>
-                                                <p>✔️</p>
-                                            <%}else{%>
-                                                <p>❌</p>
-                                            <%}%>
-                                        <%}else{%>                                            
-                                                <%= %>                                            
-                                        <%}%>   <!-- IfElse part for daymatching table closing here --> 
-
-                                    <%}%>   <!-- If(Tsk.actions) closing here --> 
-                                <%}%>   <!-- For Loop (Inner) closing here --> 
-                                </td>
-                            <%}%>   <!-- For Loop (Outer) closing here --> 
-                        </tr> <!-- Row for table tat contains status closing here --> 
-                    </table>
-                </div>
-                <% } %>    <!-- Locals.Task closing here -->    
-                <!-- </div> -->
-            <!-- </div>  one-task-container -->
-            </li>
-            <%} %>   <!-- For Loop closing here -->     
-        <!-- </ul> -->
-    </div>
-</section>
+    
+                <% for(tsk of task){ %>
+                <li>
+                <!-- <div id="one-task-container"> -->
+                    <div id="task-name-container">
+                            <ul>
+                                <li>
+                                    <div id="name-and-info-container">
+                                        <div id="only-task-name">
+                                            <p><%= tsk.taskName %></p>
+                                        </div>
+                                        <div id="task-info">
+                                    <% if(locals.task){ %>
+                                            <!-- <form action="/delete-task/<%= tsk._id%>">
+                                                <input class="material-symbols-outlined circle-button" type="submit" value="delete" />
+                                            </form> -->
+                                            <form action="/details/<%= tsk._id%>">
+                                                <input class="material-symbols-outlined circle-button" type="submit" value="info" />
+                                            </form>
+                                    <% } %>
+                                            <!-- <p><span class="material-symbols-rounded">info</span></p> -->
+                                        </div>
+                                    </div>
+                                                             
+                                </li>
+                                <li>
+                                        <!-- <a href="/delete-task/<%= tsk._id%>">Delete-Task</a> -->
+                                        <!-- <form action="/delete-task/<%= tsk._id%>">
+                                            <input class="material-symbols-outlined circle-button" type="submit" value="delete" />
+                                        </form> -->
+                                     
+                                    <div id="update-actions-container">
+                                        <div id="today-update">
+                                            <small>Today</small>
+                                        </div>
+                                        <div id="update-button">
+                                            <form action="/action-status" method="POST">
+                                                <li>
+                                                    <input type="hidden" name="task" value="<%= tsk._id %>">
+                                                    <button class="material-symbols-rounded doneNotDoneButton" id="done-button" type="submit" name="actionStatus" value="true">task_alt</button>
+                                                    <button class="material-symbols-outlined doneNotDoneButton" id="not-done-button" type="submit" name="actionStatus" value="false">cancel</button>
+                                                </li>                                       
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                    </div>
+                    
+                    <!-- <div id="main-container"> -->
+                        <!-- Update -->
+                    
+                    <% if(locals.task){ %>
+                    <div id="actions-list-container">
+                        <!-- <ul id="task-actions-< task._id >"></ul> ahauhui-->
+                        <table style="width:100% ;text-align:center">
+                            <tr>
+                                
+    
+                                    <% let currentDate = new Date(Date.now());%>
+                                    <% for(let firstHalf = 1; firstHalf <= currentDate.getDay(); firstHalf++){%>
+                                        <% if(firstHalf == currentDate.getDay()) {%>
+                                            <th style="color:#f9f9f9;border-radius:10px; background:#000000;"><b>Today</b></th>
+                                        <%}else{%>
+                                            <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-firstHalf)).toDateString().slice(0,10);%></th>
+                                        <% } %>
+                                    <%}%>
+                                    <% for(let secondHalf = (currentDate.getDay()+1); secondHalf<=7; secondHalf++){%>
+                                        <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-secondHalf)).toDateString().slice(0,10);%></th>
+                                    <%}%>
+                                <!-- <th>Mon 1</th><th>Tue 2</th><th>wed 3</th><th>Thu 4</th><th>Fri 5</th><th>Sat 6</th><th>Sun 0</th> -->
+    
+                            </tr>
+                            <tr>
+                                <% var thisWeekNumber = function newweek_no(dt){
+                                        var tdt = new Date(dt.valueOf());
+                                        var dayn = (dt.getDay() + 6) % 7;
+                                        tdt.setDate(tdt.getDate() - dayn + 3);
+                                        var firstThursday = tdt.valueOf();
+                                        tdt.setMonth(0, 1);
+                                        if (tdt.getDay() !== 4){
+                                        tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
+                                     }
+                                    return 1 + Math.ceil((firstThursday - tdt) / 604800000);
+                                }%>
+                                
+                                <% for(let j = 1; j <= 7; j++){ %>
+                                    <%var dy = j%7;%>
+                                    <td> 
+                                        <%if(new Date().getUTCDay().toString() == j.toString()) {%>
+                                            
+                                        <%}%>                                                                                                       
+                                    <% for(let i = tsk.actions.length; i>= 0; i--){ %>                                    
+                                        <% if(tsk.actions[i]){ %>
+                                            <% if(dy.toString() == tsk.actions[i].dateRecord.getDay().toString() && thisWeekNumber(new Date()) == thisWeekNumber(tsk.actions[i].dateRecord)){ %>      
+                                                <%if(tsk.actions[i].actionStatus == 'true'){%>
+                                                    <p><span class="material-symbols-rounded" style="color:#ffffff;background-color:#018888; border-radius: 50%;">task_alt</span></p>
+                                                <%}else{%>
+                                                    <!-- <p><span class="material-symbols-rounded">cancel</span></p> -->
+                                                    <p><span class="material-symbols-outlined" style="color:#ffffff;background-color: #aa0000; border-radius: 50%;">cancel</span></p>
+                                                <%}%>
+                                            <%}else{%>                                            
+                                                    <%= %>                                            
+                                            <%}%>   <!-- IfElse part for daymatching table closing here --> 
+    
+                                        <%}%>   <!-- If(Tsk.actions) closing here --> 
+                                    <%}%>   <!-- For Loop (Inner) closing here --> 
+                                    </td>
+                                <%}%>   <!-- For Loop (Outer) closing here --> 
+                            </tr> <!-- Row for table tat contains status closing here --> 
+                        </table>
+                    </div>
+                    <% } %>    <!-- Locals.Task closing here -->    
+                    <!-- </div> -->
+                <!-- </div>  one-task-container -->
+                </li>
+                <%} %>   <!-- For Loop closing here -->     
+            <!-- </ul> -->
+        </div>
+    </section>
+    
+</body>
+</html>

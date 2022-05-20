@@ -35,7 +35,7 @@ module.exports.destroy = async function(req, res){
                     message: "Task deleted"
                 });
             }
-            return res.redirect('back');
+            return res.redirect('/');
     }catch(err){
         return res.redirect('back');
     }    
