@@ -81,35 +81,14 @@
     border-radius: 10px;
     padding: 0px 5px 0px 5px;
 }
-/* button {
-    padding: 6px 6px 2px 6px;
-    background: var(--bgColor);
-    color: #008C7F;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    border: none;
-    border-radius: 50%;
-    /* float: left; */
-    /* box-shadow: var(--neuShadow) */
-/* } */ 
 
 /* MAIN */
 #task-list-container{
     height: 80vh;
-    /* flex-direction: column; */
-    /* background-color: #f2f8fc; */
-    /* background-image: var(--bgColor); */
     opacity: 0.9;
-    /* box-shadow: var(--neuShadow); */
-    /* filter: blur(2px); */
     border-radius: 13px;
     padding: 10px 10px 10px 10px;
     display: block;
-    /* width: 100%; */
-    /* padding-left: 5%; */
-    /* flex-direction: row; */
     overflow-y:auto;
 
 }
@@ -120,7 +99,6 @@
 #habit-name-heading{
     float: left;
     width: 30%;
-    /* background-image: var(--bgColor); */
     background: #00AAA9; 
     border-radius: 5px 0px 0px 5px; 
     margin-right: 2px;
@@ -131,47 +109,22 @@
     background: #00AAA9; 
     border-radius: 0px 5px 5px 0px;
 }
-/* #habit-status-update-heading{
-    width: 20%;
-    float: left;
-    background: #00AAA9; 
-    border-radius: 0px 5px 5px 0px;
-    margin-left: 2px;
-    margin-right: 2px;
-
-
-} */
-
 #task-list-container li{
     /* color: rgb(226, 141, 31); */
     text-align: center;
     list-style-type: none;
 }
-/* #one-task-container{
-    border: 2px solid black;
-} */
-
 
 #task-name-container{
     background-image: var(--bgColor);
-    /* background-color: #231e84; */
-    /* background-color: #00AAA9; */
     height: 14vh;
     width: 30%;
     font-size: x-large;
-    /* font-weight: bold; */
     float: left !important;
     border-radius: 5px 0px 0px 5px;
     margin-top: 2px;
-    /* box-shadow: var(--neuShadow); */
     padding-top: 0px;
     color: #005B63;
-    /* border: 2px solid black; */
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* border: 1px solid black; */
-    /* background: var(--bgColor); */
-    /* overflow-y: auto; */
 }
 #name-and-info-container{
     width: 100%;

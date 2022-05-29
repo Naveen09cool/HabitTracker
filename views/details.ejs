@@ -8,25 +8,27 @@
     <title>Document</title>
 </head>
 <body> 
-<section id="ha">
+<section id="habits">
     <div id="task-details-container">
                 <div id="dialogue">
                     <h1>Detailed analysis for : <%= task.taskName %></h1>
 
                     <h4>Habit started on : <%= task.createdAt.toDateString() %></h4>
                 </div>
-                <div id="details-task-name-container">
-                    <div id="only-task-name">
-                        <p><%= task.taskName %></p>
-                    </div>
-                </div>
                 <div id="task-delete-btn">
                     <% if(locals.task){ %>
                         <form action="/delete-task/<%= task._id%>">
-                            <input class="circle-button" type="submit" value="delete-task" />
+                            <input id="delete-button" type="submit" value="Delete-task" />
                         </form>
                     <% } %>
                 </div>
+                <div id="details-task-name-container">
+                    <!-- <div id="only-task-name"> -->
+                    <div>
+                        <h1><%= task.taskName %></h1>
+                    </div>
+                </div>
+                
 <!-- Table Section Started Here -->
                 <% if(locals.task){ %>
                 <div id="status-container">
@@ -66,9 +68,12 @@
  <!-- Row for table tat contains status closing here --> 
                         </tr>
                     </table>
-                    <h1>Efficiency : <%= ((Truecount/(Falsecount+Truecount))*100).toFixed(1) %> %</h1>
-                    <h4>Total job Done days : <%= Truecount %></h4>
-                    <h4>Total job Not-Done days : <%= Falsecount %></h4>
+                    
+                    <div id="hiabitAnalysis">
+                        <h1>Efficiency : <%= ((Truecount/(Falsecount+Truecount))*100).toFixed(1) %> %</h1>
+                        <h4>Total job Done days : 10/<%= Truecount %></h4>
+                        <h4>Total job Not-Done days : 10/<%= Falsecount %></h4>
+                    </div>
                 </div>
                 <% } %>    <!-- Locals.Task closing here -->  
     </div>
