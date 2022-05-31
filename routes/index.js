@@ -10,7 +10,7 @@ router.get('/', homeController.home);
 router.get('/details/:id', homeController.details);
 
 
-// FOR TASK CONTROLLER
+// FOR TASK/Habit CONTROLLER
 router.post('/create-task', taskController.create)
 router.get('/delete-task/:id', taskController.destroy)
 
