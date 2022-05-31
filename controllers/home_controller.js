@@ -2,16 +2,12 @@ const Task = require('../models/task');
 const Action = require('../models/action');
 const { populate } = require('../models/task');
 
-console.log('Controller')
-
+// Render Home Page
 module.exports.home = async function(req, res){
     const totalHabits = await Task.countDocuments({}) 
     Task.find({})
     .populate({
-        path:'actions',
-        // populate:{
-        //     path:'action'
-        // }
+        path:'actions'
     })    
     .exec(function (err, task) {
         return res.render('home',{
@@ -22,6 +18,7 @@ module.exports.home = async function(req, res){
     })
 
 }
+// Render details page
 module.exports.details = async function(req, res){
     try{
         let task = await Task.findById(req.params.id).populate({

@@ -12,6 +12,7 @@
     padding-bottom: 5%;
     background-color: #efeded;
     margin-top: 1px;
+    margin-bottom: -12px;
     background-color: #030406;
     background: url(/imgs/liquid-cheese.svg);
     background-attachment: fixed;
@@ -43,6 +44,7 @@
 #habit-input-button{
     padding: 8px 16px 8px 16px;
     color: #008C7F;
+    background-color: white;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
@@ -51,15 +53,21 @@
     margin-top: 5px;
     float: left;
     margin-right: 6rem;
+    box-shadow: var(--neuShadow);
+}
+#habit-input-button:hover{
+    background-color: #008C7F;
+    color: white;
 }
 #total-habit{
-    color: #008C7F;
+    color: #fec72e;
+    background-color: black;
     font-size: 16px;
     float: left;
     font-weight: bold;
     border: 2px solid black;
-    border-radius: 10px;
-    padding: 0px 5px 0px 5px;
+    border-radius: 30px;
+    padding: 8px 15px 5px 8px;
 }
 
 /* MAIN */
@@ -160,17 +168,25 @@
     opacity: 1;
     margin-top: 4px;
     z-index: 2;
-    border: 1px solid #cf9e23;
+    border: 1px solid #0000007e;
 }
 #done-button{
     float: left;
     color: #00AAA9;
     margin-right: 5px;
 }
+#done-button:hover{
+    background-color: #00AAA9;
+    color: white;
+}
 #not-done-button{
     float: right;
     color: #a50d0d;
     margin-right: 5px;
+}
+#not-done-button:hover{
+    background-color: #a50d0d;
+    color: white;
 }
 #actions-list-container{
     width: 69%;
@@ -200,8 +216,10 @@ td {
     opacity: 1;
     z-index: 2;
     border: 1px solid #cf9e23;
-
-
+}
+.circle-button:hover{
+    background-color: #cf9e23;
+    color: white;
 }
 
 .material-symbols-rounded {

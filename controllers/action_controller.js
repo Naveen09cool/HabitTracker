@@ -2,7 +2,7 @@ const Task = require('../models/task');
 const Action = require('../models/action');
 
 
-
+// To create action, Status of habit DONE or NOT DONE
 module.exports.create= async function(req, res){
     console.log(req.body)
     console.log(req.params)
@@ -42,14 +42,6 @@ module.exports.create= async function(req, res){
                     }
             }
     }
-        if (req.xhr){
-            return res.status(200).json({
-                data: {
-                    actionStatus: actionStatus
-                },
-                message: "Status created!"
-            });
-        }
            return res.redirect('/');
     }catch(err){
         console.log("Erron in Action",err);

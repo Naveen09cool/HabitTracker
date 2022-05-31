@@ -9,12 +9,11 @@
 <body>
     <section id="habit-Tracker">
         <div id="create-task-container">
-            <!-- <h3>"Your habits defines you!!"</h3>  -->
             <form action="/create-task" method="POST">
                 <input id="habit-input" type="text" name="taskName" placeholder="Enter New habit..." required>
-                <input id="habit-input-button" type="submit" value="Add task">
+                <input id="habit-input-button" type="submit" value="Add Habit">
                 <div id="total-habit">
-                    <p>Active Habits: <%= totalHabits %></p>
+                    <span>Active Habits:</span><span style="font-size:22px;"><%= totalHabits %></span>
                 </div>
             </form>
             
@@ -29,9 +28,6 @@
                     <div id="habit-status-heading">
                         <h2>Habit Status</h2>
                     </div>
-                    <!-- <div id="habit-status-update-heading">
-                        <h2>Update Status</h2>
-                    </div> -->
                 </div>
     
                 <% for(tsk of task){ %>
@@ -53,17 +49,11 @@
                                                 <input class="material-symbols-outlined circle-button" type="submit" value="info" />
                                             </form>
                                     <% } %>
-                                            <!-- <p><span class="material-symbols-rounded">info</span></p> -->
                                         </div>
                                     </div>
                                                              
                                 </li>
                                 <li>
-                                        <!-- <a href="/delete-task/<%= tsk._id%>">Delete-Task</a> -->
-                                        <!-- <form action="/delete-task/<%= tsk._id%>">
-                                            <input class="material-symbols-outlined circle-button" type="submit" value="delete" />
-                                        </form> -->
-                                     
                                     <div id="update-actions-container">
                                         <div id="today-update">
                                             <small>Today</small>
@@ -81,30 +71,22 @@
                                 </li>
                             </ul>
                     </div>
-                    
-                    <!-- <div id="main-container"> -->
                         <!-- Update -->
-                    
                     <% if(locals.task){ %>
                     <div id="actions-list-container">
-                        <!-- <ul id="task-actions-< task._id >"></ul> ahauhui-->
                         <table style="width:100% ;text-align:center">
                             <tr>
-                                
-    
-                                    <% let currentDate = new Date(Date.now());%>
-                                    <% for(let firstHalf = 1; firstHalf <= currentDate.getDay(); firstHalf++){%>
-                                        <% if(firstHalf == currentDate.getDay()) {%>
-                                            <th style="color:#f9f9f9;border-radius:10px; background:#000000;"><b>Today</b></th>
-                                        <%}else{%>
-                                            <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-firstHalf)).toDateString().slice(0,10);%></th>
-                                        <% } %>
-                                    <%}%>
-                                    <% for(let secondHalf = (currentDate.getDay()+1); secondHalf<=7; secondHalf++){%>
-                                        <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-secondHalf)).toDateString().slice(0,10);%></th>
-                                    <%}%>
-                                <!-- <th>Mon 1</th><th>Tue 2</th><th>wed 3</th><th>Thu 4</th><th>Fri 5</th><th>Sat 6</th><th>Sun 0</th> -->
-    
+                                <% let currentDate = new Date(Date.now());%>
+                                <% for(let firstHalf = 1; firstHalf <= currentDate.getDay(); firstHalf++){%>
+                                    <% if(firstHalf == currentDate.getDay()) {%>
+                                        <th style="color:#f9f9f9;border-radius:10px; background:#000000;"><b>Today</b></th>
+                                    <%}else{%>
+                                        <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-firstHalf)).toDateString().slice(0,10);%></th>
+                                    <% } %>
+                                <%}%>
+                                <% for(let secondHalf = (currentDate.getDay()+1); secondHalf<=7; secondHalf++){%>
+                                    <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-secondHalf)).toDateString().slice(0,10);%></th>
+                                <%}%>
                             </tr>
                             <tr>
                                 <% var thisWeekNumber = function newweek_no(dt){

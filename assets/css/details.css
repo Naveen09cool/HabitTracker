@@ -7,6 +7,7 @@ body{
     width: 90%;
     height: 65vh;
     margin-left: 5%;
+    
 }
 #details-task-name-container{
     background: #00aaa9;
@@ -21,6 +22,7 @@ body{
     background-color: #ffffff53;
     margin-left: 5%;
     margin-top: 2%;
+    margin-bottom: 2%;
     width: 90%;
     border-radius: 10px;
     border: 1px solid #00aaa9;
@@ -43,6 +45,25 @@ body{
 }
 #delete-button:hover{
     background-color: #AA0000;
+    color: #ffffff;
+}
+#back-button{
+    /* padding: 5px 5px 4px 5px; */
+    color: #00aaa9;
+    text-align: center;
+    font-weight: bolder;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 2px solid black;
+    position: fixed;
+    top: 20%;
+	right:17%;
+    box-shadow: var(--neuShadow);
+}
+#back-button:hover{
+    background-color: #00aaa9;
     color: #ffffff;
 }
 
