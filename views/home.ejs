@@ -8,6 +8,7 @@
 </head>
 <body>
     <section id="habit-Tracker">
+<!-- Input box for creating  habit -->
         <div id="create-task-container">
             <form action="/create-task" method="POST">
                 <input id="habit-input" type="text" name="taskName" placeholder="Enter New habit..." required>
@@ -16,11 +17,10 @@
                     <span>Active Habits:</span><span style="font-size:22px;"><%= totalHabits %></span>
                 </div>
             </form>
-            
-        </div>            
+        </div>
         <div id="task-list-container">
             <!-- <ul> -->
-                
+<!-- Heading for the table  -->
                 <div id="table-heading">
                     <div id="habit-name-heading">
                         <h2>Habit Name</h2>
@@ -29,12 +29,13 @@
                         <h2>Habit Status</h2>
                     </div>
                 </div>
-    
                 <% for(tsk of task){ %>
+<!-- Habit Name List Block-->
                 <li>
                 <!-- <div id="one-task-container"> -->
                     <div id="task-name-container">
                             <ul>
+<!-- Habit Name -->
                                 <li>
                                     <div id="name-and-info-container">
                                         <div id="only-task-name">
@@ -42,9 +43,6 @@
                                         </div>
                                         <div id="task-info">
                                     <% if(locals.task){ %>
-                                            <!-- <form action="/delete-task/<%= tsk._id%>">
-                                                <input class="material-symbols-outlined circle-button" type="submit" value="delete" />
-                                            </form> -->
                                             <form action="/details/<%= tsk._id%>">
                                                 <input class="material-symbols-outlined circle-button" type="submit" value="info" />
                                             </form>
@@ -53,6 +51,7 @@
                                     </div>
                                                              
                                 </li>
+<!-- Action List Button container in Name Block -->
                                 <li>
                                     <div id="update-actions-container">
                                         <div id="today-update">
@@ -71,10 +70,12 @@
                                 </li>
                             </ul>
                     </div>
+<!-- Habit Name List Block ENDED Here-->
                         <!-- Update -->
                     <% if(locals.task){ %>
                     <div id="actions-list-container">
                         <table style="width:100% ;text-align:center">
+<!-- Function for getting days of the week -->
                             <tr>
                                 <% let currentDate = new Date(Date.now());%>
                                 <% for(let firstHalf = 1; firstHalf <= currentDate.getDay(); firstHalf++){%>
@@ -88,6 +89,7 @@
                                     <th><%=new Date(Date.now() - 864e5 * (currentDate.getDay()-secondHalf)).toDateString().slice(0,10);%></th>
                                 <%}%>
                             </tr>
+<!-- Function for Getting week Number of the year -->
                             <tr>
                                 <% var thisWeekNumber = function newweek_no(dt){
                                         var tdt = new Date(dt.valueOf());
@@ -100,7 +102,7 @@
                                      }
                                     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
                                 }%>
-                                
+<!-- Loop for filling the data acording to day of the week -->
                                 <% for(let j = 1; j <= 7; j++){ %>
                                     <%var dy = j%7;%>
                                     <td> 
@@ -124,7 +126,8 @@
                                     <%}%>   <!-- For Loop (Inner) closing here --> 
                                     </td>
                                 <%}%>   <!-- For Loop (Outer) closing here --> 
-                            </tr> <!-- Row for table tat contains status closing here --> 
+                            </tr> 
+<!-- Row for table tat contains status closing here --> 
                         </table>
                     </div>
                     <% } %>    <!-- Locals.Task closing here -->    

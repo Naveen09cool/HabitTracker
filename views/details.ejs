@@ -15,6 +15,7 @@
 
                     <h4>Habit started on : <%= task.createdAt.toDateString() %></h4>
                 </div>
+<!-- DELETE BUTTON -->
                 <div id="task-delete-btn">
                     <% if(locals.task){ %>
                         <form action="/delete-task/<%= task._id%>">
@@ -22,6 +23,7 @@
                         </form>
                     <% } %>
                 </div>
+<!-- BACK BUTTON  -->
                 <div id="back-btn">
                     <form action="/">
                         <input id="back-button" type="submit" value="Home" />
@@ -46,7 +48,7 @@
                             <%}%>
                         </tr>
                         <tr>
-<!-- Loop to show week ewcordWeek record -->
+<!-- Loop to show last 10 days record -->
                             <% let currentDate = new Date(Date.now()).getDay()%>
                             <% let Truecount = 0 %>
                             <% let Falsecount = 0 %>
